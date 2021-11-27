@@ -1,13 +1,27 @@
-import { Container, Typography } from '@mui/material';
+import { Container, ThemeProvider, Typography } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
 import { ItemForm } from './components/ItemForm';
+
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: '#6147c2',
+        },
+        secondary: {
+            main: '#cccccc',
+        },
+    },
+});
 
 export const App = () => {
     return (
-        <Container maxWidth='md'>
-            <Typography variant='h4' component='h1' align='center' mt={6}>
-                Список дел
-            </Typography>
-            <ItemForm />
-        </Container>
+        <ThemeProvider theme={theme}>
+            <Container maxWidth='md'>
+                <Typography variant='h4' component='h1' align='center' mt={6}>
+                    Список дел
+                </Typography>
+                <ItemForm />
+            </Container>
+        </ThemeProvider>
     );
 };

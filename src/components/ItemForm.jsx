@@ -14,6 +14,7 @@ export const ItemForm = () => {
                 variant='standard'
                 fullWidth
                 margin='normal'
+                color='primary'
             />
             <TextField
                 id='description'
@@ -21,6 +22,7 @@ export const ItemForm = () => {
                 variant='standard'
                 fullWidth
                 margin='normal'
+                color='secondary'
             />
         </Box>
     );
