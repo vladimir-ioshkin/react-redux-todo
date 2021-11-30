@@ -1,6 +1,8 @@
 import { Box, Button, Stack } from '@mui/material';
 import { useCallback, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { DESCRIPTION_ID, TITLE_ID } from '../consts/fields';
+import { addTodoItem } from '../store/actions';
 import { Field } from './Field';
 
 const boxStyle = {
@@ -9,25 +11,36 @@ const boxStyle = {
 };
 
 export const ItemForm = () => {
+    const dispatch = useDispatch();
+
     const [state, setState] = useState({
         [TITLE_ID]: '',
         [DESCRIPTION_ID]: '',
     });
 
-    const onSubmit = useCallback((event) => {
-        event.preventDefault();
-        console.log(state);
-    }, [state]);
+    const onSubmit = useCallback(
+        (event) => {
+            event.preventDefault();
+            dispatch(addTodoItem(state));
+        },
+        [state]
+    );
 
     return (
-        <Box component='form' sx={boxStyle} noValidate autoComplete='off' onSubmit={onSubmit}>
-            <Field 
+        <Box
+            component='form'
+            sx={boxStyle}
+            noValidate
+            autoComplete='off'
+            onSubmit={onSubmit}
+        >
+            <Field
                 id={TITLE_ID}
                 label='Название'
                 color='primary'
                 state={state}
                 setState={setState}
-            />    
+            />
             <Field
                 id={DESCRIPTION_ID}
                 label='Описание'
