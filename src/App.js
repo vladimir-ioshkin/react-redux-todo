@@ -1,6 +1,7 @@
 import { Container, ThemeProvider, Typography } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 import { ItemForm } from './components/ItemForm';
+import { ItemList } from './components/ItemList';
 
 const theme = createTheme({
     palette: {
@@ -21,6 +22,7 @@ export const App = () => {
                     Список дел
                 </Typography>
                 <ItemForm />
+                <ItemList></ItemList>
             </Container>
         </ThemeProvider>
     );

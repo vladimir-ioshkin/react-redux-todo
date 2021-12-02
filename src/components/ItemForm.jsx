@@ -23,7 +23,7 @@ export const ItemForm = () => {
             event.preventDefault();
             dispatch(addTodoItem(state));
         },
-        [state]
+        [state, dispatch]
     );
 
     return (
