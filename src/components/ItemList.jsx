@@ -1,5 +1,5 @@
-import { useSelector } from "react-redux";
-
+import { useSelector } from 'react-redux';
+import { Item } from './Item';
 
 export const ItemList = () => {
     const items = useSelector((state) => {
@@ -8,11 +8,11 @@ export const ItemList = () => {
 
     return (
         <ul>
-           {items.map(({ title, id }) => {
-               return (
-                   <li key={id}>{title}</li>
-               );
-           })}
+            {items.map(({ id, title, description }) => {
+                return (
+                    <Item key={id} title={title} description={description} />
+                );
+            })}
         </ul>
-    )
+    );
 };
