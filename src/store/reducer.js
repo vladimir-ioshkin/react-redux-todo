@@ -1,4 +1,4 @@
-import { ADD_TODO_ITEM } from './consts';
+import { ADD_TODO_ITEM, DELETE_TODO_ITEM } from './consts';
 const defaultState = {
     items: [],
 };
@@ -14,6 +14,14 @@ export const reducer = (state = defaultState, action) => {
             return {
                 ...state,
                 items: [...state.items, item],
+            };
+        case DELETE_TODO_ITEM:
+            const items = state.items.filter(
+                (item) => item.id !== action.payload.id
+            );
+            return {
+                ...state,
+                items,
             };
 
         default:
