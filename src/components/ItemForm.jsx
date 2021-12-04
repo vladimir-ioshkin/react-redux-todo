@@ -22,6 +22,10 @@ export const ItemForm = () => {
         (event) => {
             event.preventDefault();
             dispatch(addTodoItem(state));
+            setState({
+                [TITLE_ID]: '',
+                [DESCRIPTION_ID]: '',
+            });
         },
         [state, dispatch]
     );
