@@ -7,8 +7,7 @@ export const reducer = (state = defaultState, action) => {
     switch (action.type) {
         case ADD_TODO_ITEM:
             const item = {
-                title: action.payload.title,
-                description: action.payload.description,
+                ...action.payload,
                 id: Date.now(),
             };
             return {
@@ -30,8 +29,7 @@ export const reducer = (state = defaultState, action) => {
                 }
                 return {
                     ...item,
-                    title: action.payload.title,
-                    description: action.payload.description,
+                    ...action.payload
                 };
             });
             return {

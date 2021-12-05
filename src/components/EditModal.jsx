@@ -7,7 +7,7 @@ import {
     DialogActions,
 } from '@mui/material';
 import { Field } from './Field';
-import { DESCRIPTION_ID, TITLE_ID } from '../consts/fields';
+import { DESCRIPTION_ID, TITLE_ID, TAG_ID } from '../consts/fields';
 import { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { editTodoItem } from '../store/actions';
@@ -16,7 +16,7 @@ const dialogContentStyle = {
     paddingTop: 0,
 };
 
-export const EditModal = ({ isOpen, setIsOpen, id, title, description }) => {
+export const EditModal = ({ isOpen, setIsOpen, id, title, description, tag }) => {
     const dispatch = useDispatch();
     const [state, setState] = useState({
         [TITLE_ID]: title,
@@ -56,6 +56,13 @@ export const EditModal = ({ isOpen, setIsOpen, id, title, description }) => {
                     <Field
                         id={DESCRIPTION_ID}
                         label='Описание'
+                        color='secondary'
+                        state={state}
+                        setState={setState}
+                    />
+                    <Field
+                        id={TAG_ID}
+                        label='Тег'
                         color='secondary'
                         state={state}
                         setState={setState}

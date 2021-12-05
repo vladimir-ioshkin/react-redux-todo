@@ -1,7 +1,7 @@
 import { Box, Button, Stack } from '@mui/material';
 import { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { DESCRIPTION_ID, TITLE_ID } from '../consts/fields';
+import { DESCRIPTION_ID, TITLE_ID, TAG_ID } from '../consts/fields';
 import { addTodoItem } from '../store/actions';
 import { Field } from './Field';
 
@@ -16,6 +16,7 @@ export const ItemForm = () => {
     const [state, setState] = useState({
         [TITLE_ID]: '',
         [DESCRIPTION_ID]: '',
+        [TAG_ID]: '',
     });
 
     const onSubmit = useCallback(
@@ -25,6 +26,7 @@ export const ItemForm = () => {
             setState({
                 [TITLE_ID]: '',
                 [DESCRIPTION_ID]: '',
+                [TAG_ID]: '',
             });
         },
         [state, dispatch]
@@ -48,6 +50,13 @@ export const ItemForm = () => {
             <Field
                 id={DESCRIPTION_ID}
                 label='Описание'
+                color='secondary'
+                state={state}
+                setState={setState}
+            />
+            <Field
+                id={TAG_ID}
+                label='Тег'
                 color='secondary'
                 state={state}
                 setState={setState}

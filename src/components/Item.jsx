@@ -4,6 +4,7 @@ import {
     CardHeader,
     Typography,
     IconButton,
+    Slide,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
@@ -17,7 +18,7 @@ const cardStyle = {
     margin: '40px auto',
 };
 
-export const Item = ({ id, title, description }) => {
+export const Item = ({ id, title, description, tag }) => {
     const dispatch = useDispatch();
     const onDelete = useCallback(() => {
         dispatch(deleteTodoItem({ id }));
@@ -28,32 +29,42 @@ export const Item = ({ id, title, description }) => {
     }, [setIsOpen]);
 
     return (
-        <li>
-            <Card sx={cardStyle}>
-                <CardHeader
+        <Slide direction="right" in={true} mountOnEnter unmountOnExit timeout={{
+            appear: 500,
+            enter: 300,
+            exit: 500,
+           }}>
+            <li>
+                <Card sx={cardStyle}>
+                    <CardHeader
+                        title={title}
+                        action={
+                            <>
+                                <IconButton aria-label='edit' onClick={onEdit}>
+                                    <EditIcon />
+                                </IconButton>
+                                <IconButton
+                                    aria-label='delete'
+                                    onClick={onDelete}
+                                >
+                                    <DeleteIcon />
+                                </IconButton>
+                            </>
+                        }
+                    />
+                    <CardContent>
+                        <Typography>{description}</Typography>
+                        <Typography>{tag}</Typography>
+                    </CardContent>
+                </Card>
+                <EditModal
+                    isOpen={isOpen}
+                    setIsOpen={setIsOpen}
+                    id={id}
                     title={title}
-                    action={
-                        <>
-                            <IconButton aria-label='edit' onClick={onEdit}>
-                                <EditIcon />
-                            </IconButton>
-                            <IconButton aria-label='delete' onClick={onDelete}>
-                                <DeleteIcon />
-                            </IconButton>
-                        </>
-                    }
+                    description={description}
                 />
-                <CardContent>
-                    <Typography>{description}</Typography>
-                </CardContent>
-            </Card>
-            <EditModal
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
-                id={id}
-                title={title}
-                description={description}
-            />
-        </li>
+            </li>
+        </Slide>
     );
 };
