@@ -16,7 +16,14 @@ const dialogContentStyle = {
     paddingTop: 0,
 };
 
-export const EditModal = ({ isOpen, setIsOpen, id, title, description, tag }) => {
+export const EditModal = ({
+    isOpen,
+    setIsOpen,
+    id,
+    title,
+    description,
+    tag,
+}) => {
     const dispatch = useDispatch();
     const [state, setState] = useState({
         [TITLE_ID]: title,
@@ -47,6 +54,7 @@ export const EditModal = ({ isOpen, setIsOpen, id, title, description, tag }) =>
             >
                 <DialogContent sx={dialogContentStyle}>
                     <Field
+                        required
                         id={TITLE_ID}
                         label='Название'
                         color='primary'
@@ -69,7 +77,11 @@ export const EditModal = ({ isOpen, setIsOpen, id, title, description, tag }) =>
                     />
                 </DialogContent>
                 <DialogActions>
-                    <Button type='submit' variant='contained'>
+                    <Button
+                        type='submit'
+                        variant='contained'
+                        disabled={!state[TITLE_ID]}
+                    >
                         Сохранить
                     </Button>
                     <Button onClick={onClose}>Отменить</Button>

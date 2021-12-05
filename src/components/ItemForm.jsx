@@ -41,6 +41,7 @@ export const ItemForm = () => {
             onSubmit={onSubmit}
         >
             <Field
+                required
                 id={TITLE_ID}
                 label='Название'
                 color='primary'
@@ -62,7 +63,12 @@ export const ItemForm = () => {
                 setState={setState}
             />
             <Stack direction='row' mt={4} spacing={1}>
-                <Button type='submit' variant='contained' margin='normal'>
+                <Button
+                    type='submit'
+                    variant='contained'
+                    margin='normal'
+                    disabled={!state[TITLE_ID]}
+                >
                     Добавить
                 </Button>
             </Stack>
