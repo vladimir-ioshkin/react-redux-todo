@@ -8,9 +8,9 @@ export const ItemList = () => {
 
     return (
         <ul>
-            {items.map(({ id, title, description, tag }) => {
+            {items.map((item) => {
                 return (
-                    <Item key={id} id={id} title={title} description={description} tag={tag} />
+                    <Item key={item.id} item={item} />
                 );
             })}
         </ul>

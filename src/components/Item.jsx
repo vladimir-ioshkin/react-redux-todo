@@ -18,7 +18,8 @@ const cardStyle = {
     margin: '40px auto',
 };
 
-export const Item = ({ id, title, description, tag }) => {
+export const Item = ({ item }) => {
+    const { id, title, description, tag } = item;
     const dispatch = useDispatch();
     const onDelete = useCallback(() => {
         dispatch(deleteTodoItem({ id }));
@@ -29,11 +30,17 @@ export const Item = ({ id, title, description, tag }) => {
     }, [setIsOpen]);
 
     return (
-        <Slide direction="right" in={true} mountOnEnter unmountOnExit timeout={{
-            appear: 500,
-            enter: 300,
-            exit: 500,
-           }}>
+        <Slide
+            direction='right'
+            in={true}
+            mountOnEnter
+            unmountOnExit
+            timeout={{
+                appear: 500,
+                enter: 300,
+                exit: 500,
+            }}
+        >
             <li>
                 <Card sx={cardStyle}>
                     <CardHeader
@@ -63,6 +70,7 @@ export const Item = ({ id, title, description, tag }) => {
                     id={id}
                     title={title}
                     description={description}
+                    tag={tag}
                 />
             </li>
         </Slide>
