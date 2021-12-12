@@ -1,6 +1,14 @@
-import { ADD_TODO_ITEM, DELETE_TODO_ITEM, EDIT_TODO_ITEM } from './consts';
+import {
+    ADD_TODO_ITEM,
+    DELETE_TODO_ITEM,
+    EDIT_TODO_ITEM,
+    ADD_TAG,
+    DELETE_TAG,
+    EDIT_TAG,
+} from './consts';
 const defaultState = {
     items: [],
+    tags: ['работа', 'важное', 'дом', 'хобби', 'прочее'],
 };
 
 export const reducer = (state = defaultState, action) => {
@@ -29,13 +37,17 @@ export const reducer = (state = defaultState, action) => {
                 }
                 return {
                     ...item,
-                    ...action.payload
+                    ...action.payload,
                 };
             });
             return {
                 ...state,
                 items: mappedItems,
             };
+        case ADD_TAG:
+            
+        case DELETE_TAG:
+        case EDIT_TAG:
         default:
             return state;
     }

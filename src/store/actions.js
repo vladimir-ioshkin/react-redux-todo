@@ -1,4 +1,11 @@
-import { ADD_TODO_ITEM, DELETE_TODO_ITEM, EDIT_TODO_ITEM } from './consts';
+import {
+    ADD_TODO_ITEM,
+    DELETE_TODO_ITEM,
+    EDIT_TODO_ITEM,
+    ADD_TAG,
+    DELETE_TAG,
+    EDIT_TAG,
+} from './consts';
 
 export const addTodoItem = (payload) => {
     return {
@@ -20,3 +27,25 @@ export const editTodoItem = (payload) => {
         payload,
     };
 };
+
+export const addTag = (payload) => {
+    return {
+        type: ADD_TAG,
+        payload,
+    };
+};
+
+export const deleteTag = (payload) => {
+    return {
+        type: DELETE_TAG,
+        payload,
+    };
+};
+
+export const editTag = (payload) => {
+    return {
+        type: EDIT_TAG,
+        payload,
+    };
+};
+

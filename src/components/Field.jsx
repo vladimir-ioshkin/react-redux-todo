@@ -1,7 +1,16 @@
 import { TextField } from '@mui/material';
 import { useCallback } from 'react';
 
-export const Field = ({ required, id, label, color, state, setState }) => {
+export const Field = ({
+    required,
+    id,
+    label,
+    color,
+    state,
+    setState,
+    select = false,
+    children,
+}) => {
     const onChange = useCallback(
         (event) => {
             setState((prev) => {
@@ -17,6 +26,7 @@ export const Field = ({ required, id, label, color, state, setState }) => {
     return (
         <TextField
             required={required}
+            select={select}
             id={id}
             label={label}
             variant='standard'
@@ -25,6 +35,8 @@ export const Field = ({ required, id, label, color, state, setState }) => {
             color={color}
             value={state[id]}
             onChange={onChange}
-        />
+        >
+            {children}
+        </TextField>
     );
 };
