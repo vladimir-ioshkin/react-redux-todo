@@ -2,12 +2,13 @@ import { useSelector } from 'react-redux';
 import { DESCRIPTION_ID, TITLE_ID, TAG_ID } from '../consts/fields';
 import { Field } from './Field';
 import { MenuItem } from '@mui/material';
+import { TagChip } from './TagChip';
 
 export const FormFields = ({ state, setState }) => {
     const tags = useSelector((state) => {
         return state.tags;
     });
-    
+
     return (
         <>
             <Field
@@ -25,10 +26,6 @@ export const FormFields = ({ state, setState }) => {
                 state={state}
                 setState={setState}
             />
-            {/* <TagSelect
-                state={state}
-                setState={setState}
-            /> */}
             <Field
                 select
                 id={TAG_ID}
@@ -39,7 +36,7 @@ export const FormFields = ({ state, setState }) => {
             >
                 {tags.map((tag) => (
                     <MenuItem key={tag} value={tag}>
-                        {tag}
+                        <TagChip tag={tag} />
                     </MenuItem>
                 ))}
             </Field>

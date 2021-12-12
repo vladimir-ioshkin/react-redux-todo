@@ -12,6 +12,7 @@ import { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteTodoItem } from '../store/actions';
 import { EditModal } from './EditModal';
+import { TagChip } from './TagChip';
 
 const cardStyle = {
     width: 600,
@@ -44,7 +45,12 @@ export const Item = ({ item }) => {
             <li>
                 <Card sx={cardStyle}>
                     <CardHeader
-                        title={title}
+                        title={
+                            <>
+                                {title}
+                                <TagChip tag={tag} />
+                            </>
+                        }
                         action={
                             <>
                                 <IconButton aria-label='edit' onClick={onEdit}>
@@ -61,7 +67,6 @@ export const Item = ({ item }) => {
                     />
                     <CardContent>
                         <Typography>{description}</Typography>
-                        <Typography>{tag}</Typography>
                     </CardContent>
                 </Card>
                 <EditModal

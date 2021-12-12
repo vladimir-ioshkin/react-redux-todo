@@ -9,6 +9,12 @@ import {
 const defaultState = {
     items: [],
     tags: ['работа', 'важное', 'дом', 'хобби', 'прочее'],
+    tagColors: {
+        работа: '#83b5dd',
+        важное: '#9b90c8',
+        дом: '#9eccb3',
+        хобби: '#f5ffcb',
+    },
 };
 
 export const reducer = (state = defaultState, action) => {
@@ -45,7 +51,7 @@ export const reducer = (state = defaultState, action) => {
                 items: mappedItems,
             };
         case ADD_TAG:
-            
+
         case DELETE_TAG:
         case EDIT_TAG:
         default:

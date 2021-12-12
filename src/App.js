@@ -22,7 +22,7 @@ export const App = () => {
                     Список дел
                 </Typography>
                 <ItemForm />
-                <ItemList></ItemList>
+                <ItemList />
             </Container>
         </ThemeProvider>
     );
