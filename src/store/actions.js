@@ -2,6 +2,7 @@ import {
     ADD_TODO_ITEM,
     DELETE_TODO_ITEM,
     EDIT_TODO_ITEM,
+    DONE_TODO_ITEM,
     ADD_TAG,
     DELETE_TAG,
     EDIT_TAG,
@@ -28,6 +29,13 @@ export const editTodoItem = (payload) => {
     };
 };
 
+export const doneTodoItem = (payload) =>{
+    return {
+        type: DONE_TODO_ITEM,
+        payload,
+    }
+}
+
 export const addTag = (payload) => {
     return {
         type: ADD_TAG,
@@ -48,4 +56,3 @@ export const editTag = (payload) => {
         payload,
     };
 };
-

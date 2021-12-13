@@ -2,6 +2,7 @@ import {
     ADD_TODO_ITEM,
     DELETE_TODO_ITEM,
     EDIT_TODO_ITEM,
+    DONE_TODO_ITEM,
     ADD_TAG,
     DELETE_TAG,
     EDIT_TAG,
@@ -23,6 +24,7 @@ export const reducer = (state = defaultState, action) => {
             const item = {
                 ...action.payload,
                 id: Date.now(),
+                done: false
             };
             return {
                 ...state,
@@ -50,6 +52,23 @@ export const reducer = (state = defaultState, action) => {
                 ...state,
                 items: mappedItems,
             };
+
+        case DONE_TODO_ITEM:
+            const doneItems = state.items.map((item) => {
+                if (item.id !== action.payload.id) {
+                    return item;
+                }
+                return {
+                    ...item,
+                    done: !item.done,
+                };
+            });
+            return {
+                ...state,
+                items: doneItems,
+            }; 
+
+
         case ADD_TAG:
 
         case DELETE_TAG:

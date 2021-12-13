@@ -5,12 +5,13 @@ import {
     Typography,
     IconButton,
     Slide,
+    Checkbox,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { useCallback, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { deleteTodoItem } from '../store/actions';
+import { deleteTodoItem, doneTodoItem } from '../store/actions';
 import { EditModal } from './EditModal';
 import { TagChip } from './TagChip';
 
@@ -20,15 +21,22 @@ const cardStyle = {
 };
 
 export const Item = ({ item }) => {
-    const { id, title, description, tag } = item;
+    const { id, title, description, tag, done } = item;
     const dispatch = useDispatch();
+
+    const [isOpen, setIsOpen] = useState(false);
+
     const onDelete = useCallback(() => {
         dispatch(deleteTodoItem({ id }));
     }, [id, dispatch]);
-    const [isOpen, setIsOpen] = useState(false);
+
     const onEdit = useCallback(() => {
         setIsOpen(true);
     }, [setIsOpen]);
+    
+    const onDone = useCallback(() => {
+        dispatch(doneTodoItem({ id }));
+    }, [id, dispatch]);
 
     return (
         <Slide
@@ -67,6 +75,7 @@ export const Item = ({ item }) => {
                     />
                     <CardContent>
                         <Typography>{description}</Typography>
+                        <Checkbox checked={done} onClick={onDone}></Checkbox>
                     </CardContent>
                 </Card>
                 <EditModal
