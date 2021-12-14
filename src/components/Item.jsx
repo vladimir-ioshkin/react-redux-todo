@@ -6,10 +6,11 @@ import {
     IconButton,
     Slide,
     Checkbox,
+    FormControlLabel,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteTodoItem, doneTodoItem } from '../store/actions';
 import { EditModal } from './EditModal';
@@ -33,10 +34,21 @@ export const Item = ({ item }) => {
     const onEdit = useCallback(() => {
         setIsOpen(true);
     }, [setIsOpen]);
-    
+
     const onDone = useCallback(() => {
         dispatch(doneTodoItem({ id }));
     }, [id, dispatch]);
+
+    const doneCardStyle = useMemo(() => {
+        if (done) {
+            return {
+                ...cardStyle,
+                textDecoration: 'line-through',
+                color: '#888888',
+            };
+        }
+        return cardStyle;
+    }, [done]);
 
     return (
         <Slide
@@ -51,11 +63,23 @@ export const Item = ({ item }) => {
             }}
         >
             <li>
-                <Card sx={cardStyle}>
+                <Card sx={doneCardStyle}>
                     <CardHeader
                         title={
                             <>
-                                {title}
+                                <FormControlLabel
+                                    control={
+                                        <Checkbox
+                                            checked={done}
+                                            onClick={onDone}
+                                        />
+                                    }
+                                    label={
+                                        <Typography variant={'h5'}>
+                                            {title}
+                                        </Typography>
+                                    }
+                                />
                                 <TagChip tag={tag} />
                             </>
                         }
@@ -75,7 +99,6 @@ export const Item = ({ item }) => {
                     />
                     <CardContent>
                         <Typography>{description}</Typography>
-                        <Checkbox checked={done} onClick={onDone}></Checkbox>
                     </CardContent>
                 </Card>
                 <EditModal
